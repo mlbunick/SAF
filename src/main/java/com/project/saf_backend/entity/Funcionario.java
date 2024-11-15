@@ -24,7 +24,7 @@ public class Funcionario {
     @Column(name = "sobrenome")
     private String sobrenome;
 
-    @Column(name = "email_id", nullable = false, unique = true )
+    @Column(name = "email_id", nullable = false, unique = true)
     private String email;
 
 }
