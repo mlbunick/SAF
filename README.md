@@ -52,12 +52,12 @@ A API suporta as seguintes operações relacionadas aos funcionários:
    CREATE DATABASE saf;
    
 # Configurações do Banco de Dados
-spring.datasource.url=jdbc:mysql://localhost:3306/saf
-spring.datasource.username=SEU_USUARIO
+spring.datasource.url=jdbc:mysql://localhost:3306/saf <br/>
+spring.datasource.username=SEU_USUARIO <br/>
 spring.datasource.password=SUA_SENHA
 
 # Configurações do Hibernate
-spring.jpa.hibernate.ddl-auto=update
+spring.jpa.hibernate.ddl-auto=update <br/>
 spring.jpa.show-sql=true
 
 # Configurações do Servidor
