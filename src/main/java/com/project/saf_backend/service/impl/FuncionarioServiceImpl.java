@@ -8,6 +8,10 @@ import com.project.saf_backend.repository.FuncionarioRepository;
 import com.project.saf_backend.service.FuncionarioService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
 public class FuncionarioServiceImpl implements FuncionarioService {
@@ -28,5 +32,18 @@ public class FuncionarioServiceImpl implements FuncionarioService {
                         new ResourceNotFoundException("Não existe nenhum Funcionário com o ID Fornecido: " + funcionarioID));
 
         return FuncionarioMapper.mapFuncionarioDto(funcionario);
+    }
+
+    @Override
+    public List<FuncionarioDTO> getAllFuncionarios() {
+        List<Funcionario> funcionarios = funcionarioRepository.findAll();
+
+        if(funcionarios.isEmpty()){
+            throw new ResourceNotFoundException("Não foi possível encontrar nenhum funcionário!");
+        }
+
+        return funcionarios.stream().map((funcionario) -> FuncionarioMapper.mapFuncionarioDto(funcionario))
+                .collect(Collectors.toList());
+
     }
 }
