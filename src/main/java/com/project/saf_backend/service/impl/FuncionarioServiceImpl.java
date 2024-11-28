@@ -46,4 +46,21 @@ public class FuncionarioServiceImpl implements FuncionarioService {
                 .collect(Collectors.toList());
 
     }
+
+    @Override
+    public FuncionarioDTO updateFuncionario(Long funcionarioID, FuncionarioDTO updatedFuncionario) {
+        Funcionario funcionario = funcionarioRepository.findById(funcionarioID).orElseThrow(
+                () -> new ResourceNotFoundException("Não existe nenhum funcionário com o ID fornecido!")
+        );
+
+        funcionario.setNome(updatedFuncionario.getNome());
+        funcionario.setSobrenome(updatedFuncionario.getSobrenome());
+        funcionario.setEmail(updatedFuncionario.getEmail());
+
+        Funcionario updatedFuncionarioObj = funcionarioRepository.save(funcionario);
+
+        return FuncionarioMapper.mapFuncionarioDto(updatedFuncionarioObj);
+
+    }
+
 }
